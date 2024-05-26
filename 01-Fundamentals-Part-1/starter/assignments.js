@@ -15,3 +15,23 @@ console.log(typeof isIsland, typeof population, typeof country, typeof language)
 
 // Assignment 3
 language = "English";
+
+// Assignment 4 - Basic Operators
+let halvedPopulation = population / 2;
+console.log(halvedPopulation);
+
+population++;
+console.log(population);
+console.log(population > 6);
+console.log(population < 33);
+
+const description1 =
+    country +
+    ' is in ' +
+    continent +
+    ', and its ' +
+    population +
+    ' million people speak ' +
+    language;
+
+console.log(description1);

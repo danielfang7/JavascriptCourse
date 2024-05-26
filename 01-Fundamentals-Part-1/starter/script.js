@@ -21,7 +21,7 @@ console.log(typeof javascriptIsFun);
 let year;
 console.log(year);
 console.log(typeof year);
-*/
+
 
 // Math operators
 const now = 2024;
@@ -45,3 +45,18 @@ console.log(x);
 console.log(ageDaniel > ageSarah);
 console.log(ageSarah >= 6);
 const isOverSix = ageSarah >= 6;
+*/
+
+// Operator Precedence
+const now = 2024;
+const ageDaniel = now - 1997;
+const ageSarah = now - 2018;
+console.log(now - 1991 > now - 2018);
+
+let x, y;
+x = y = 25 - 10 - 5;
+console.log(x, y);
+
+const averageAge = (ageDaniel + ageSarah) / 2;
+console.log(ageDaniel, ageSarah);
+console.log(averageAge);

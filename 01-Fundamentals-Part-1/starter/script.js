@@ -45,7 +45,6 @@ console.log(x);
 console.log(ageDaniel > ageSarah);
 console.log(ageSarah >= 6);
 const isOverSix = ageSarah >= 6;
-*/
 
 // Operator Precedence
 const now = 2024;
@@ -60,3 +59,41 @@ console.log(x, y);
 const averageAge = (ageDaniel + ageSarah) / 2;
 console.log(ageDaniel, ageSarah);
 console.log(averageAge);
+
+const firstName = 'Daniel';
+const job = 'teacher';
+const birthYear = 1997;
+const currentYear = 2024;
+
+const daniel = "I'm " + firstName + ", a " + (currentYear - birthYear) + " year old " + job + "!";
+console.log(daniel);
+
+const danielNew = `I'm ${firstName}, a ${currentYear - birthYear} year old ${job}!`;
+console.log(danielNew);
+
+console.log(`String
+multiple
+lines`);
+*/
+
+const age = 15;
+
+if (age >= 18) {
+    console.log("Daniel can start driving license 😊");
+}
+else {
+    const yearsLeft = 18 - age;
+    console.log(`Daniel can start driving in ${yearsLeft} years`)
+}
+
+// If Else Control Structure
+const birthYear = 1997;
+let century;
+if (birthYear <= 2000) {
+    century = 20;
+}
+else {
+    century = 21;
+}
+console.log(century);
+

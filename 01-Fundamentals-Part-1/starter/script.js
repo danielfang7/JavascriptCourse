@@ -97,7 +97,7 @@ else {
     century = 21;
 }
 console.log(century);
-*/
+
 
 // Type Conversion
 const inputYear = '1991';
@@ -123,3 +123,48 @@ console.log(`23` * `2`);
 let n = '1' + 1;
 n = n - 1;
 console.log(n);
+
+
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean('Daniel'));
+console.log(Boolean({}));
+
+// Logs You Should Get a Job because 0 is falsy
+// 0 is converted to false due to type coercion
+const money = 0;
+if (money) {
+    console.log("Don't spend it all :)")
+}
+else {
+    console.log("You should get a job")
+}
+
+// Logs Height is undefined because variable is not assigned any value (undefined is falsy)
+let height;
+if (height) {
+    console.log(`Height is defined`)
+}
+else {
+    console.log(`Height is undefined`)
+}
+
+// Equality Operators
+const age = '18';
+if (age === 18) console.log('You are an adult (strict)');
+if (age == 18) console.log('You are an adult (loose)');
+
+const favorite = prompt("What's your favorite number?");
+console.log(favorite);
+
+// '7' == 7 will return true
+if (favorite == 7) {
+    console.log('Cool, 7 is an amazing number')
+}
+else if (favorite == 8) {
+    console.log('8 is also a cool number')
+}
+else {
+    console.log('Number is not 7 or 8')
+}
+*/

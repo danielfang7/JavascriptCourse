@@ -41,7 +41,7 @@ x *= 4;
 x++;
 console.log(x);
 
-// Comparison operators 
+// Comparison operators
 console.log(ageDaniel > ageSarah);
 console.log(ageSarah >= 6);
 const isOverSix = ageSarah >= 6;
@@ -167,4 +167,75 @@ else if (favorite == 8) {
 else {
     console.log('Number is not 7 or 8')
 }
+
+
+// Boolean Logic
+const hasDriversLicense = true; //A
+const hasGoodVision = true; //B
+
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasDriversLicense || hasGoodVision);
+console.log(!hasDriversLicense);
+
+if (hasDriversLicense && hasGoodVision) {
+    console.log(`Sarah is able to drive`)
+}
+else {
+    console.log(`Someone else should drive`)
+}
+
+const isTired = false; //C
+console.log(hasDriversLicense && hasGoodVision && isTired);
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+    console.log(`Sarah is able to drive`);
+}
+else {
+    console.log(`Someone else should drive`);
+}
+
+
+// Switch Statements
+const day = `wednesday`;
+
+switch (day) {
+    case `monday`:
+        console.log(`Plan course structure`);
+        console.log(`Go to coding meetup`);
+        break;
+    case `tuesday`:
+        console.log(`Prepare theory videos`);
+        break;
+    case `wednesday`:
+    case `thursday`:
+        console.log(`Write code examples`);
+        break;
+    case `friday`:
+        console.log(`Record Videos`);
+        break;
+    case `saturday`:
+    case `sunday`:
+        console.log(`Enjoy the weekend`);
+        break;
+    default:
+        console.log(`Not a valid day`);
+}
 */
+
+// Ternary Operator: executes drink wine
+const age = 23;
+age >= 18 ? console.log(`I like to drink wine`) : console.log(`I like to drink water`);
+
+// With Ternary
+const drink = age >= 18 ? 'wine' : 'water';
+
+// Without Ternary
+let drink2;
+if (age >= 18) {
+    drink2 = 'wine';
+}
+else {
+    drink2 = 'water';
+}
+
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);

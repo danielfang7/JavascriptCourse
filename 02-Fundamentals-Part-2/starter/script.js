@@ -271,7 +271,7 @@ console.log(daniel.age);
 
 // Challenge
 console.log(daniel.getSummary());
-*/
+
 
 // Coding challenge
 const mark = {
@@ -305,7 +305,12 @@ else if (!markHigherBMI) {
 else {
     console.log(`They have the same BMI!`);
 }
+*/
 
+// For Loop - keeps running while condition is true
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep}`);
+}
 
 
 

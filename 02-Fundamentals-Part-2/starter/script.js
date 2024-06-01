@@ -117,7 +117,6 @@ const checkWinner = function(avgDolphins, avgKoalas) {
 }
 
 checkWinner(scoreDolphins, scoreKoalas);
-*/
 
 const friend1 = `Michael`;
 const friend2 = `Steven`;
@@ -157,6 +156,156 @@ const age2 = calcAge(years2[1]);
 const age3 = calcAge(years2[years2.length - 1]);
 console.log(age1, age2, age3);
 
-
 const ages = [calcAge(years2[0]), calcAge(years2[1]), calcAge(years2[years2.length - 1])];
 console.log(ages);
+
+const friends = [`Michael`, `Steven`, `Peter`];
+
+// Add elements
+const newLength = friends.push(`Jay`);
+friends.unshift(`John`);
+console.log(friends);
+
+// Remove elements
+friends.pop();
+friends.shift();
+console.log(friends);
+
+// Returns index location of element (-1 if missing)
+console.log(friends.indexOf(`Steven`));
+
+// Returns true or false (whether element exists in array)
+console.log(friends.includes(`Steven`));
+
+const calcTip = function(billValue) {
+    if (billValue >= 50 && billValue <= 300)
+    {
+        return billValue * 0.15;
+    }
+    else {
+        return billValue * 0.2;
+    }
+}
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(calcTip(10));
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+
+// Creating an Object
+const daniel = {
+    firstName: `Daniel`,
+    lastName: `Fang`,
+    age: `27`, 
+    job: `founder`,
+    friends: [`Aaron`, `Michael`, `Jeffrey`]
+};
+console.log(daniel);
+
+// Object property access
+console.log(daniel.lastName);
+console.log(daniel[`lastName`]); 
+
+// For bracket notation, put any expression. Can't do that for . notation.
+const nameKey = `Name`;
+console.log(daniel[`first` + nameKey]);
+console.log(daniel[`last` + nameKey]);
+
+const interestedIn = prompt(`What do you want to know about Daniel? Choose between firstName, lastName, age, job, and friends`);
+
+// This makes sure the Expression evaluated is Truthy, as undefined is false
+if (daniel[interestedIn]) {
+    console.log(daniel[interestedIn]);
+}
+else {
+    console.log(`Wrong request! Choose between options`)
+}
+
+// Adding properties to the Object
+daniel.location = `United States`;
+daniel[`instagram`] = `@danielfang7`;
+console.log(daniel);
+
+// Challenge (dot member access is higher priority than computed member access {}, both are left to right)
+console.log(`${daniel.firstName} has ${daniel.friends.length} friends, and his best friend is called ${daniel.friends[daniel.friends.length - 1]}`);
+
+
+const daniel = {
+    firstName: `Daniel`,
+    lastName: `Fang`,
+    birthYear: `1997`,
+    job: `founder`,
+    friends: [`Aaron`, `Michael`, `Jeffrey`],
+    hasDriversLicense: true,
+
+    // calcAge: function (birthYear) {
+    //     return 2024 - birthYear;
+    // }
+
+    // calcAge: function () {
+    //     return 2024 - this.birthYear;
+    // }
+
+    // Create a new property on the object using a function with 'this'
+    calcAge: function () {
+        this.age = 2024 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function () {
+        return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDriversLicense === true ? `a` : `no`} driver's license`;
+    }
+};
+
+// Calling function methods from Objects
+console.log(daniel.calcAge());
+console.log(daniel.age);
+console.log(daniel.age);
+
+// console.log(daniel[`calcAge`](daniel.birthYear));
+
+// Challenge
+console.log(daniel.getSummary());
+*/
+
+// Coding challenge
+const mark = {
+    fullName: `Mark Miller`,
+    mass: 78,
+    height: 1.69,
+    calcBMI: function () {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
+
+const john = {
+    fullName: `John Smith`,
+    mass: 92,
+    height: 1.95,
+    calcBMI: function () {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
+
+const markHigherBMI = mark.calcBMI() > john.calcBMI() ? true : false;
+
+if (markHigherBMI) {
+    console.log(`${mark.fullName}'s BMI (${mark.calcBMI()}) is higher than ${john.fullName}'s (${john.calcBMI()})`);
+}
+else if (!markHigherBMI) {
+    console.log(`${john.fullName}'s BMI (${john.calcBMI()}) is higher than ${mark.fullName}'s (${mark.calcBMI()})`);
+}
+else {
+    console.log(`They have the same BMI!`);
+}
+
+
+
+

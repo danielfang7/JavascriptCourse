@@ -40,3 +40,37 @@ const describePopulation = function(country, population) {
 console.log(describePopulation('USA', 333));
 console.log(describePopulation('China', 1441));
 console.log(describePopulation('Portugal', 10));
+
+// Assignment 5 - Intro to Arrays
+const populationsArray = [333, 1441, 10, 83];
+console.log(populationsArray.length === 4 ? true : false);
+
+const percentagesArray = [
+    percentageOfWorld1(populationsArray[0]), 
+    percentageOfWorld1(populationsArray[1]), 
+    percentageOfWorld1(populationsArray[2]),
+    percentageOfWorld1(populationsArray[3])
+];
+
+console.log(percentagesArray);
+
+// Assignment 6 - Basic Array Operations
+const neighbors = [`Canada`, `Mexico`];
+neighbors.push(`Utopia`);
+neighbors.pop();
+console.log(neighbors.includes(`Germany`) ? `Central European Country` : `Probably not a central European country`);
+neighbors[neighbors.indexOf(`Canada`)] = `Republic of Canada`;
+console.log(neighbors);
+
+// Assignment 7 - Intro to Objects
+const myCountry = {
+    country: `USA`,
+    capital: `Washington DC`,
+    language: `English`,
+    population: 333,
+    neighbors: [`Canada`, `Mexico`]
+};
+
+// Assignment 8 - Dot vs Bracket Notation
+
+

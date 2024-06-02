@@ -96,4 +96,39 @@ myCountry.checkIsland();
 
 console.log(myCountry.isIsland);
 
+// Assignment 10 - Iteration the For Loop
+for (let i = 1; i <= 5; i++) {
+    console.log(`Voter number ${i} is currently voting.`);
+}
 
+// Assignment 11 - Looping Arrays, Breaking and Continue
+const populationsArray2 = [333, 1441, 10, 83];
+const percentages2 = [];
+
+for (let i = 0; i < populationsArray2.length; i++) {
+    percentages2[i] = percentageOfWorld1(populationsArray2[i]); 
+}
+
+console.log(percentages2, percentagesArray);
+
+// Assignment 12: looping backwards and loops in loops
+
+const listOfNeighbors = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+
+for (let i = 0; i < listOfNeighbors.length; i++) {
+    for (let j = 0; j < listOfNeighbors[i].length; j++) {
+        console.log(`Neighbor: ${listOfNeighbors[i][j]}`);
+    }
+}
+
+// Assignment 13: while loop
+
+const percentages3 = [];
+
+let i = 0;
+while (i < populationsArray2.length) {
+    percentages3[i] = percentageOfWorld1(populationsArray2[i]);
+    i++;
+}
+
+console.log(percentages3);

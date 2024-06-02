@@ -305,7 +305,6 @@ else if (!markHigherBMI) {
 else {
     console.log(`They have the same BMI!`);
 }
-*/
 
 // For Loop - keeps running while condition is true
 for (let rep = 1; rep <= 10; rep++) {
@@ -313,4 +312,113 @@ for (let rep = 1; rep <= 10; rep++) {
 }
 
 
+const danielArray = [ 
+    `Daniel`,
+    `Fang`,
+    2024 - 1997, 
+    `founder`,
+    [`Aaron`, `Michael`, `Jeffrey`],
+    true
+];
+
+const types = [];
+for (let i = 0; i < danielArray.length; i++) {
+    // Reading from danielArray
+    console.log(danielArray[i], typeof danielArray[i]);
+
+    // Filling types array
+    // types[i] = typeof danielArray[i];
+
+    types.push(typeof danielArray[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1997, 2020];
+const ages = [];
+for (let i = 0; i < years.length; i++) {
+    ages.push(2024 - years[i]);
+}
+console.log(ages);
+
+// Continue Statement - Skip to next iteration of loop
+for (let i = 0; i < danielArray.length; i++) {
+    if (typeof danielArray[i] !== 'string') continue;
+    console.log(danielArray[i], typeof danielArray[i]);
+}
+
+// Break Statement - Loop terminated completely on break
+for (let i = 0; i < danielArray.length; i++) {
+    if (typeof danielArray[i] === 'number') break;
+    console.log(danielArray[i], typeof danielArray[i]);
+}
+
+const danielArray = [ 
+    `Daniel`,
+    `Fang`,
+    2024 - 1997, 
+    `founder`,
+    [`Aaron`, `Michael`, `Jeffrey`],
+    true
+];
+
+// Looping Backwards
+for (let i = danielArray.length - 1; i >= 0; i--) {
+    console.log(i, danielArray[i]);
+}
+
+// Loops Inside a Loop
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`---------- Starting Exercise ${exercise}`);
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Exercise ${exercise}: Lifting weight repetition ${rep}`);
+    }
+}
+
+
+// for (let rep = 1; rep <= 10; rep++) {
+//     console.log(`Lifting weights repetition ${rep}`);
+// }
+
+// While Loop example - more versatile as it does not need a counter
+let rep = 1;
+while (rep <= 10) {
+    console.log(`Lifting weights repetition ${rep}`);
+    rep++;
+}
+
+// While is better when we don't know how many iterations we need - such as dice roll
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log(`Loop is about to end...`);
+}
+*/
+
+// Exercise Challenge 4
+
+const calcTip = function (bill) {
+    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+const calcAverage = function (arr) {
+    let counter = 0;
+    for (let i = 0; i < arr.length; i++) {
+        counter += arr[i];
+    }
+    return counter / arr.length; 
+}
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+for (let i = 0; i < 10; i++) {
+    tips[i] = calcTip(bills[i]);
+    totals[i] = bills[i] + tips[i];
+}
+
+console.log(bills, tips, totals);
+console.log(calcAverage(totals));
 

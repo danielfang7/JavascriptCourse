@@ -116,3 +116,16 @@ console.log(i, j, k);
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r); // values are set to 1 by default if they don't exist
 */
+
+// Inefficient way of operating array
+const arr1 = [7, 8, 9];
+const badNewArr = [1, 2, arr1[0], arr1[1], arr1[2]];
+console.log(badNewArr);
+
+// Spread Operator - writes out all individual elements of array
+const arr2 = [7, 8, 9];
+const newArr = [1, 2, ...arr2];
+console.log(newArr);
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu];

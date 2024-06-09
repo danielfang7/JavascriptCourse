@@ -52,6 +52,7 @@ restaurant.orderDelivery({
   starterIndex: 2,
 });
 
+/*
 // Use curly braces to destructure objects
 const { name, categories, openingHours } = restaurant;
 console.log(name, categories, openingHours);
@@ -80,6 +81,7 @@ const {
   fri: { open: o, close: c },
 } = restaurant.openingHours;
 console.log(o, c);
+*/
 
 /* Lecture 01
 // Retreiving elements manually

@@ -242,3 +242,40 @@ const ratingStars = [63405, 1808];
 
 const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
 console.log(fiveStarRatings, oneStarRatings, threeStarRatings);
+
+// Assignment 2: Destructuring Objects
+const [{ title, author, ISBN }] = books;
+console.log(title, author, ISBN);
+
+const [{ keywords: tags }] = books;
+console.log(tags);
+
+const { language, programmingLanguage = `unknown` } = books[6];
+console.log(language, programmingLanguage);
+
+// Mutating variables with object property values
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+[{ title: bookTitle, author: bookAuthor }] = books;
+console.log(bookTitle, bookAuthor);
+
+// Nested destructuring
+const [
+  {
+    thirdParty: {
+      goodreads: { rating: bookRating },
+    },
+  },
+] = books;
+console.log(bookRating);
+
+// Function where we instantly destructure the object passed into function parameter
+const printBookInfo = function ({ title, author, year = `year unknown` }) {
+  console.log(`${title} by ${author}, ${year}`);
+};
+
+printBookInfo({
+  title: 'Algorithms',
+  author: 'Robert Sedgewick',
+  year: '2011',
+});

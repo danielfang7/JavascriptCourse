@@ -279,3 +279,38 @@ printBookInfo({
   author: 'Robert Sedgewick',
   year: '2011',
 });
+
+// Assignment 3: Spread Operator
+const bookAuthors = [...books[0].author, ...books[1].author];
+console.log(bookAuthors);
+
+const spellWord = function (string) {
+  console.log(...string);
+};
+
+spellWord(`Daniel`);
+
+// Assignment 4: Rest Pattern and Parameters
+const [mainKeywords, ...rest] = books[0].keywords;
+console.log(mainKeywords, rest);
+
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+console.log(bookPublisher, restOfTheBook);
+
+const printBookAuthorsCount = function (title, ...authors) {
+  console.log(`The book ${title} has ${authors.length} authors`);
+};
+
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+
+// Assignment 5: Short Circuiting
+const hasExamplesInJava = function (book) {
+  return book.programmingLanguage === `Java` || `no data available`;
+};
+
+console.log(hasExamplesInJava(books[0]));
+
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`${books[i].title} provides online content`);
+}

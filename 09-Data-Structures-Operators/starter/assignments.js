@@ -223,6 +223,8 @@ const books = [
   },
 ];
 
+console.log(`----ASSIGNMENTS----`);
+
 // Assignment 1: Destructuring Arrays
 const [firstBook, secondBook] = books;
 console.log(firstBook, secondBook);
@@ -314,3 +316,77 @@ for (let i = 0; i < books.length; i++) {
   books[i].onlineContent &&
     console.log(`${books[i].title} provides online content`);
 }
+
+// Assignment 6: Nullish Coalescing Operator
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ??
+    console.log(`${books[i].title} provides no data about its online content`);
+}
+
+// Assignment 7: Logical Assignments Operators
+for (const book of books) {
+  book.edition ||= 1;
+}
+
+console.log(books);
+
+for (const book of books) {
+  book.highlighted &&= !book.thirdParty.goodreads.rating < 4.2;
+}
+
+console.log(books);
+
+// Assignment 8: Looping Arrays: The for-of Loop
+let pageSum = 0;
+for (const book of books) {
+  pageSum += book.pages;
+}
+console.log(pageSum);
+
+const allAuthors = [];
+for (const book of books) {
+  if (typeof book.author === `string`) {
+    allAuthors.push(book.author);
+  } else {
+    for (const author of book.author) {
+      allAuthors.push(author);
+    }
+  }
+}
+console.log(allAuthors);
+
+for (const [index, author] of allAuthors.entries()) {
+  console.log(`${index + 1}. ${author}`);
+}
+
+// Assignment 9: Enhanced Object Literals
+const bookData = [
+  ['title', 'Computer Networking: A Top-Down Approach'],
+  ['author', ['James F. Kurose', 'Keith W. Ross']],
+  ['publisher', 'Addison Wesley'],
+];
+
+// Setting object properties using enhanced object literals
+const newBook = {
+  [bookData[0][0]]: bookData[0][1],
+  [bookData[1][0]]: bookData[1][1],
+  [bookData[2][0]]: bookData[2][1],
+};
+
+console.log(newBook);
+
+// Adding a variable to an object using enhanced object literals
+const pages = 880;
+const newBook2 = {
+  title: 'The C Programming Language',
+  author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
+  pages,
+};
+
+console.log(newBook2);
+
+// Assignment 10: Optional Chaining
+const getFirstKeyword = function (book) {
+  return book.keywords?.[0];
+};
+console.log(getFirstKeyword(books[0]));

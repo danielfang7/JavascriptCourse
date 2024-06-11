@@ -390,3 +390,18 @@ const getFirstKeyword = function (book) {
   return book.keywords?.[0];
 };
 console.log(getFirstKeyword(books[0]));
+
+// Assignment 11: Looping Objects
+const entriesAssignment = [];
+const read = Object.keys(books[0].thirdParty.goodreads);
+for (const key of read) {
+  entriesAssignment.push([key]);
+}
+console.log(entriesAssignment);
+
+const valueAssignment = Object.values(books[0].thirdParty.goodreads).entries();
+console.log(valueAssignment);
+for (const [key, value] of valueAssignment) {
+  entriesAssignment[key].push(value);
+}
+console.log(entriesAssignment);

@@ -56,6 +56,30 @@ const restaurant = {
   },
 };
 
+// Object Keys / Property Names
+const properties = Object.keys(openingHours);
+console.log(properties); // returns an array of the three property names
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// Property Values
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we are open at ${open} and close at ${close}`);
+}
+
+/*
 // With Optional Chaining (immediately return undefined if it is null)
 console.log(restaurant.openingHours?.mon?.open);
 

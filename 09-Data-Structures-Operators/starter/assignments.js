@@ -405,3 +405,6 @@ for (const [key, value] of valueAssignment) {
   entriesAssignment[key].push(value);
 }
 console.log(entriesAssignment);
+
+const entries2 = Object.entries(books[0].thirdParty.goodreads);
+console.log(entries2);

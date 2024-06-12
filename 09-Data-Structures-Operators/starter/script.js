@@ -56,7 +56,143 @@ const restaurant = {
   },
 };
 
+// Working with Strings Part 3
+
+// Split Method: splits everything into separate array elements in an array based on divider string
+console.log(`a+very+nice+string`.split(`+`));
+console.log(`Daniel Fang`.split(` `));
+const [firstName, lastName] = `Daniel Fang`.split(` `);
+console.log(firstName, lastName);
+
+// Join method is opposite of split (joins multiple array elements in array into one string)
+const newName = [`Mr.`, firstName, lastName.toUpperCase()].join(` `);
+console.log(newName);
+
+// Examples function using multiple string methods
+const capitalizeName = function (name) {
+  const names = name.split(` `);
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(` `));
+};
+capitalizeName(`jessica ann smith davis`);
+capitalizeName(`daniel fang`);
+
+// Padding a string (adds whatever is chosen to pad characters to begin or end of string to desired total string length)
+const message = `Go to gate 23!`;
+console.log(message.padStart(25, `+`).padEnd(35, `+`));
+
+const maskCreditCard = function (number) {
+  const str = number + ``;
+  const last = str.slice(-4);
+  return last.padStart(str.length, `*`);
+};
+
+console.log(maskCreditCard(43242429492202));
+console.log(maskCreditCard(`4324242949220234234242`));
+
+// Repeat
+const message2 = `Bad weather... All departures delayed... `;
+console.log(message2.repeat(5));
+
+// Function
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line`.repeat(n));
+};
+
+planesInLine(5);
+planesInLine(12);
+
 /*
+// Working with Strings PArt 1 and 2
+const airline = `Tap Air Portugal`;
+const plane = `A320`;
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = `jOnAS`; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Comparing and fixing emails
+const email = `hello@daniel.io`;
+const loginEmail = `  Hello@Daniel.Io \n`;
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+// Replacing string elements (note replace only replaces first occurrence, and is case sensitive)
+const priceGB = '288,97E';
+const priceUS = priceGB.replace('E', '$').replace(',', '.');
+console.log(priceUS);
+
+// Replacing all words occurrences
+const announcement = `All passengers come to borading door 23. Boarding door 23!`;
+console.log(announcement.replaceAll(`door`, `gate`));
+
+// Booleans
+const plane2 = `Airbus A320neo`;
+console.log(plane2.includes(`A320`)); // returns true as long as its somewhere in the string
+console.log(plane2.startsWith(`Air`)); // returns true, doesn't need to match entire word
+
+if (plane2.startsWith(`Airbus`) && plane2.endsWith(`neo`)) {
+  console.log(`Part of the NEW Airbus family`);
+}
+
+// Practice Exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes(`knife`) || baggage.includes(`gun`)) {
+    console.log(`You are not allowed on board`);
+  } else {
+    console.log(`Welcome aboard`);
+  }
+};
+
+checkBaggage(`I have a laptop, some Food, and a pocket knife`);
+checkBaggage(`Socks and Camera`);
+checkBaggage(`Got some snacks and a gun for protection`);
+
+
+console.log(plane[0]);
+console.log(`B737`[0]);
+console.log(airline.length);
+
+// Get position of given character in String
+console.log(airline.indexOf(`r`));
+console.log(airline.lastIndexOf(`r`));
+console.log(airline.indexOf(`Portugal`)); // case sensitive
+
+// Slice method to make a new substring (doesn't mutate as strings are primitive)
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7)); // extracts between index 4 and 7 (7-4 = length of string)
+
+console.log(airline.slice(0, airline.indexOf(` `))); // slices until first occurence of space
+
+console.log(airline.slice(airline.lastIndexOf(` `) + 1)); // slices last word (last space + 1 to not include the space)
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === `B` || s === `E`) {
+    console.log(`You got the middle seat`);
+  } else {
+    console.log(`You got lucky`);
+  }
+};
+checkMiddleSeat(`11B`);
+checkMiddleSeat(`23C`);
+checkMiddleSeat(`3E`);
+
+
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
   [1, 'C'],

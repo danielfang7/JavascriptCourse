@@ -458,3 +458,72 @@ console.log(firstBookMap);
 for (const [key, value] of firstBookMap) {
   if (typeof value === 'number') console.log(`${key}`);
 }
+
+// Assignment 15 - 17: Working with Strings
+
+//Part 1
+console.log(
+  books[0].ISBN[6],
+  books[0].ISBN[4],
+  books[0].ISBN[9],
+  books[0].ISBN[8]
+);
+
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+console.log(quote.indexOf(`chess`));
+
+console.log(quote.slice(quote.indexOf(`boxing`)));
+
+const isContributor = function (name) {
+  name.includes(`Contributor`) ? console.log(true) : console.log(false);
+};
+
+isContributor('Julie Sussman (Contributor)');
+
+//Part 2
+function normalizeAuthorName(author) {
+  author = author.trim();
+  const firstName = author.slice(0, author.indexOf(' '));
+
+  let lastName = '';
+  if (author.indexOf(' ') === author.lastIndexOf(' ')) {
+    lastName = author.slice(author.indexOf(' ') + 1, author.length);
+  } else {
+    lastName = author.slice(author.indexOf(' ') + 1, author.lastIndexOf(' '));
+  }
+
+  const capitalizedFirstName =
+    firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
+  const capitalizedLastName =
+    lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
+
+  return capitalizedFirstName + ' ' + capitalizedLastName;
+}
+console.log(normalizeAuthorName('  JuliE sussMan (Contributor)'));
+
+const newBookTitle = books[1].title.replace(`Programs`, `Software`);
+console.log(newBookTitle);
+
+const logBookTheme = function (title) {
+  if (title.toLowerCase().startsWith(`computer`)) {
+    console.log(`This book is about computers`);
+  } else if (
+    title.toLowerCase().includes(`algorithms`) &&
+    title.includes(`structures`)
+  ) {
+    console.log(`This book is about algorithms and data structures`);
+  } else if (
+    (title.toLowerCase().endsWith(`system`) ||
+      title.toLowerCase().endsWith(`systems`)) &&
+    !title.toLowerCase().includes(`operating`)
+  ) {
+    console.log(
+      `This book is about some systems, but definitely not about operating systems`
+    );
+  }
+};
+
+logBookTheme(books[0].title);
+logBookTheme(books[1].title);
+logBookTheme(books[2].title);

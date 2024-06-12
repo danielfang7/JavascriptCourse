@@ -56,6 +56,104 @@ const restaurant = {
   },
 };
 
+/*
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again!'],
+]);
+console.log(question);
+
+// Convert Object to Map
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Question Answer Quiz App
+console.log(question.get(`question`));
+for (const [key, value] of question) {
+  if (typeof key === `number`) console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = Number(prompt(`Your answer`));
+console.log(question.get(question.get(`correct`) === answer ? true : false));
+
+// Convert map to array
+console.log([...question]); // will return array of arrays that we started with
+console.log([...question.keys()]); // returns array of keys
+console.log([...question.values()]); // returns array of values
+
+
+// Map
+const restMap = new Map();
+restMap.set('name', 'Classico Italiano');
+restMap.set(1, 'Firenze, Italy');
+restMap.set(2, 'Lisbon, Portugal');
+
+// Chaining sets which will each return
+restMap
+  .set(`categories`, ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set(`open`, 11)
+  .set(`close`, 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed');
+
+console.log(restMap.get(`name`));
+console.log(restMap.get(true));
+
+const time = 21;
+console.log(
+  restMap.get(time > restMap.get(`open`) && time < restMap.get(`close`))
+);
+
+// Other methods for Map
+console.log(restMap.has(`categories`));
+restMap.delete(2);
+console.log(restMap);
+console.log(restMap.size);
+restMap.clear();
+console.log(restMap);
+
+// Arrays as key with Map
+const arr = [1, 2];
+restMap.set(arr, `Test`);
+console.log(restMap.get(arr));
+
+// Object as map keys
+restMap.set(document.querySelector(`h1`), `Heading`);
+console.log(restMap);
+
+
+// Sets
+const ordersSet = new Set([
+  `Pasta`,
+  `Pizza`,
+  `Pizza`,
+  `Risotto`,
+  `Pasta`,
+  `Pizza`,
+]);
+console.log(ordersSet); // the set will only include uniques
+console.log(ordersSet.size); // logs length of set
+console.log(ordersSet.has(`Pizza`)); // check if set includes a specific element
+console.log(ordersSet.has(`Bread`));
+ordersSet.add(`Garlic Bread`); // add element to set
+ordersSet.delete(`Risotto`); // delete element from set
+console.log(ordersSet);
+
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+// Example - removing duplicates in an array using Spread operator on Sets
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+
 // Object Keys / Property Names
 const properties = Object.keys(openingHours);
 console.log(properties); // returns an array of the three property names
@@ -79,7 +177,8 @@ for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we are open at ${open} and close at ${close}`);
 }
 
-/*
+
+
 // With Optional Chaining (immediately return undefined if it is null)
 console.log(restaurant.openingHours?.mon?.open);
 
@@ -97,7 +196,7 @@ console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
 const users = [{ name: `Daniel`, email: `hello@daniel.io` }];
 console.log(users[0]?.name ?? `User array empty`);
 
-/*
+
 // For Of Loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 for (const item of menu) console.log(item);
@@ -112,7 +211,7 @@ for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`);
 }
 
-/*
+
 const rest1 = {
   name: `Capri`,
   numGuests: 20,
@@ -138,8 +237,8 @@ rest2.numGuests ??= 10;
 rest1.owner &&= `<ANONYMOUS>`;
 rest2.owner &&= `<ANONYMOUS>`;
 console.log(rest1, rest2);
-*/
-/*
+
+
 console.log(`----OR----`);
 // Use any data type, return any data type, short-circuiting: if the first value is truthy, it will immediately return that value
 console.log(3 || `Daniel`); // logs 3
@@ -156,9 +255,9 @@ restaurant.orderPizza && restaurant.orderPizza(`mushrooms`, `spinach`);
 restaurant.numGuests = 0;
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect); // returns zero
-*/
 
-/*
+
+
 restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
 
 // SPREAD, because on RIGHT side of =
@@ -194,9 +293,9 @@ add(8, 2, 5, 3, 2, 1, 4);
 
 const x = [23, 5, 7];
 add(...x);
-/*
 
-/*
+
+
 restaurant.orderDelivery({
   time: `22:30`,
   address: `Via del Sole, 21`,
@@ -208,8 +307,8 @@ restaurant.orderDelivery({
   address: `Via del Sole, 21`,
   starterIndex: 2,
 });
-/*
-/*
+
+
 // Use curly braces to destructure objects
 const { name, categories, openingHours } = restaurant;
 console.log(name, categories, openingHours);
@@ -238,9 +337,9 @@ const {
   fri: { open: o, close: c },
 } = restaurant.openingHours;
 console.log(o, c);
-*/
 
-/* Lecture 01
+
+ Lecture 01
 // Retreiving elements manually
 const arr = [2, 3, 4];
 const a = arr[0];
@@ -272,9 +371,9 @@ console.log(i, j, k);
 // Default values in destructuring
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r); // values are set to 1 by default if they don't exist
-*/
 
-/*
+
+
 // Inefficient way of operating array
 const arr1 = [7, 8, 9];
 const badNewArr = [1, 2, arr1[0], arr1[1], arr1[2]];

@@ -255,12 +255,13 @@ document.querySelector('button').addEventListener('click', function () {
   const rows = text.split('\n');
   console.log(rows);
 
-  for (const element of rows) {
-    const [first, second] = element.toLowerCase().trim().split(`_`);
+  // To get current index for For-Of loop, use entries method which will make it an array of first element index, second the actual element itself
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split(`_`);
     const output = `${first}${second.replace(
       second[0],
       second[0].toUpperCase()
     )}`;
-    console.log(output);
+    console.log(`${output.padEnd(20)}${`✅`.repeat(i + 1)}`);
   }
 });

@@ -74,7 +74,7 @@ const transformer = function (str, fn) {
 
 transformer(`JavaScript is the best!`, upperFirstWord); // passing in callback functions (transformer calls them)
 transformer(`JavaScript is the best!`, oneWord);
-*/
+
 
 // Functions returning functions
 const greet = function (greeting) {
@@ -90,3 +90,84 @@ greet(`Hey`)(`Daniel`); // also logs Hey Daniel
 // Arrow function version
 const greet2 = greeting => name => console.log(`${greeting} ${name}`);
 greet2(`Hello`)(`Daniel`);
+*/
+
+const lufthansa = {
+  airline: `Lufthansa`,
+  iataCode: `LH`,
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}` });
+  },
+};
+
+lufthansa.book(239, `Daniel Fang`);
+lufthansa.book(635, `Mike Smith`);
+console.log(lufthansa);
+
+const eurowings = {
+  airline: `Eurowings`,
+  iataCode: `EW`,
+  bookings: [],
+};
+
+// We can set a variable = object method
+const book = lufthansa.book;
+
+// Need to tell JS explicity what the this keyword should point to
+book.call(eurowings, 23, `Sam Altman`);
+console.log(eurowings);
+
+book.call(lufthansa, 239, `Daniel Crazy`);
+console.log(lufthansa);
+
+// does not work
+//book(23, `Sam Altman`);
+
+// Apply method
+const flightData = [583, `Daniel Cooper`];
+book.apply(lufthansa, flightData);
+console.log(lufthansa);
+
+// Apply not used much anymore because of below method
+book.call(lufthansa, ...flightData);
+console.log(lufthansa);
+
+// Bind Method - stores new function as variable with new 'this' bound
+const bookEW = book.bind(eurowings);
+bookEW(23, `Steven Williams`);
+console.log(eurowings);
+
+const bookLH = book.bind(lufthansa);
+
+// Bind can pre-set parameter passed into function
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23(`John Smith`);
+bookEW23(`John Cooper`);
+console.log(eurowings);
+
+// BIND with Objects with event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+document
+  .querySelector(`.buy`)
+  .addEventListener(`click`, lufthansa.buyPlane.bind(lufthansa)); // need to use bind here otherwise the 'this' for an eventlistener is the element
+
+// Partial application use of BIND
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100)); // logs 123
+
+// rewrite example - currying
+const addTax2 = rate => value => value + value * rate;
+const addVAT2 = addTax2(0.23);
+console.log(addVAT2(100)); // logs 123

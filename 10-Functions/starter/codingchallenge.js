@@ -42,26 +42,25 @@ const poll = {
   // RegisterAnswer Method
   registerNewAnswer() {
     const input = Number(
-      prompt(`${this.question}
-        ${this.options[0]}
-        ${this.options[1]}
-        ${this.options[2]}
-        ${this.options[3]}
-        (Write option number)`)
+      prompt(
+        `${this.question}\n${this.options.join(`\n`)}\n(Write Option Number)`
+      )
     );
-    input >= 0 && input < poll.answers.length
+    // Register Answer
+    typeof input === `number` && input >= 0 && input < poll.answers.length
       ? (poll.answers[input] += 1)
       : console.log(`Error`);
 
-    this.displayResults(this.answers);
+    this.displayResults();
+    this.displayResults(`string`);
   },
 
   // DisplayResults Method
-  displayResults(type) {
-    if (typeof type === `string`) {
-      console.log(`Poll results are ${type}`);
+  displayResults(type = `array`) {
+    if (type === `string`) {
+      console.log(`Poll results are ${this.answers.join(`, `)}`);
     } else {
-      console.log(type);
+      console.log(this.answers);
     }
   },
 };
@@ -71,7 +70,8 @@ document
   .querySelector(`.poll`)
   .addEventListener(`click`, poll.registerNewAnswer.bind(poll));
 
-console.log(poll);
-
 // bonus
-const displayResults = poll.displayResults;
+//BONUS TEST DATA 1: [5, 2, 3]
+// BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
+
+poll.displayResults.call({ answers: [5, 2, 3] }, `string`);

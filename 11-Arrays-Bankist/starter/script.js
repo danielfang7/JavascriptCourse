@@ -74,3 +74,33 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+let arr = [`a`, `b`, `c`, `d`, `e`];
+
+// Slice
+console.log(arr.slice(2)); // logs [c, d, e]
+console.log(arr.slice(2, 4)); // logs [c, d]
+console.log(arr.slice(-2)); // logs [d, e]
+console.log(arr.slice(1, -2)); // logs [b, c]
+console.log(arr.slice()); // creates shallow copy
+console.log([...arr]); // also creates shallow copy
+
+// Splice: mutates original array (takes part of it and returns it, original array loses part extracted)
+arr.splice(-1); // removes last element of array
+console.log(arr);
+arr.splice(1, 2); // removes elements in position 1 and 2
+console.log(arr);
+
+// Reverse
+const arr2 = [`j`, `i`, `h`, `g`, `f`];
+console.log(arr2.reverse());
+console.log(arr2); // original array is mutated
+
+// Concat
+arr = [`a`, `b`, `c`, `d`, `e`];
+const letters = arr.concat(arr2); // does not mutate original arrays
+console.log(letters);
+console.log([...arr, ...arr2]); // does same thing as concat
+
+// Join
+console.log(letters.join(` - `)); // results in string of array elements separated by specifed input

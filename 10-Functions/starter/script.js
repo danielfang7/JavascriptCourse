@@ -90,7 +90,7 @@ greet(`Hey`)(`Daniel`); // also logs Hey Daniel
 // Arrow function version
 const greet2 = greeting => name => console.log(`${greeting} ${name}`);
 greet2(`Hello`)(`Daniel`);
-*/
+
 
 const lufthansa = {
   airline: `Lufthansa`,
@@ -171,3 +171,69 @@ console.log(addVAT(100)); // logs 123
 const addTax2 = rate => value => value + value * rate;
 const addVAT2 = addTax2(0.23);
 console.log(addVAT2(100)); // logs 123
+
+
+const runOnce = function () {
+  console.log(`This will never run again`);
+};
+
+runOnce();
+
+// Immediately Invoked Function Expression (IIFE)
+(function () {
+  console.log(`This will never run again`);
+})();
+*/
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+// Booker function created in the exec context of secureBooking - therefore it gets access to the secureBooking variable environment and can manipulate the passengerCount variable.
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+// Closure Example ( f closing over g variable environment)
+let f;
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f(); // logs 46
+h();
+f(); // logs 1554
+
+// Example 2 of Closure - callback having access to variables in boardPassengers that long finished execution through closure
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  // Callback function called after wait * 1000 ms (converted to seconds)
+  setTimeout(function () {
+    console.log(`We are no boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// Closure has priority over this perGroup global variable
+const perGroup = 1000;
+boardPassengers(180, 3);

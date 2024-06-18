@@ -71,10 +71,10 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
+/*
 let arr = [`a`, `b`, `c`, `d`, `e`];
 
 // Slice
@@ -104,3 +104,25 @@ console.log([...arr, ...arr2]); // does same thing as concat
 
 // Join
 console.log(letters.join(` - `)); // results in string of array elements separated by specifed input
+
+// At Method
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// Getting Last Element of Array
+console.log(arr[arr.length - 1]); // logs 64
+console.log(arr.slice(-1)[0]); // logs 64
+console.log(arr.at(-1)); // logs 64
+console.log(`daniel`.at(2)); // AT method can be used on strings too
+*/
+
+// For Each Method
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+for (const movement of movements) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${movement}`);
+  }
+}

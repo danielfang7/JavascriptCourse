@@ -61,6 +61,40 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  // Empty container
+  containerMovements.innerHTML = `;`;
+
+  // Display movements
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? `deposit` : `withdrawal`;
+    const html = `
+    <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type} </div>
+          <div class="movements__value">${mov}</div>
+        </div>
+        `;
+    containerMovements.insertAdjacentHTML(`afterbegin`, html);
+  });
+};
+displayMovements(account1.movements);
+
+// Create Username function
+// Side effect: mutate the actual accounts array using forEach
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(` `)
+      .map(name => name[0])
+      .join(``);
+  });
+};
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -136,7 +170,7 @@ for (const [i, movement] of movements.entries()) {
     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
   }
 }
-  */
+
 
 // For Each on Maps
 const currencies = new Map([
@@ -156,3 +190,44 @@ const currenciesUnique = new Set([`USD`, `GBP`, `USD`, `EUR`, `EUR`]);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}`);
 });
+  
+
+// Map method: returns new array with new elements
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUsd = 1.1;
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUSD);
+
+// Using For of instead: different paradigm (not functional programming)
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+// Map also has access to value, index, and the whole array
+const movementDesc = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: You ${mov > 0 ? `deposited` : `withdrew`} ${Math.abs(
+      mov
+    )}`
+);
+
+console.log(movementDesc);
+*/
+
+// Filter Method (return a boolean)
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const deposits = movements.filter(function (movement) {
+  return movement > 0;
+});
+console.log(deposits);
+
+// For Of (less efficient method)
+const depositsFor = [];
+for (const move of movements) if (move > 0) depositsFor.push(move);
+console.log(depositsFor);
+
+// Filter method challenge for withdrawals
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);

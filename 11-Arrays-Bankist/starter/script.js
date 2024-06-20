@@ -73,13 +73,44 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type} </div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>
         `;
     containerMovements.insertAdjacentHTML(`afterbegin`, html);
   });
 };
 displayMovements(account1.movements);
+
+// Calculate and Print Balance
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+calcDisplayBalance(account1.movements);
+
+// Calculate Income and Outflow Summary
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} €`;
+  const outflow = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(outflow)} €`;
+
+  // Simplification assuming interest paid on each deposit (1.2%) and interest paid must be > $1 for each deposit
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest} €`;
+};
+calcDisplaySummary(account1.movements);
 
 // Create Username function
 // Side effect: mutate the actual accounts array using forEach
@@ -93,7 +124,6 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
-console.log(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -105,7 +135,7 @@ console.log(accounts);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -214,7 +244,7 @@ const movementDesc = movements.map(
 );
 
 console.log(movementDesc);
-*/
+
 
 // Filter Method (return a boolean)
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -231,3 +261,50 @@ console.log(depositsFor);
 // Filter method challenge for withdrawals
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
+
+// Reduce method (accumulator is like a snowball)
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const balance = movements.reduce(function (acc, cur, i) {
+  return acc + cur;
+}, 0);
+console.log(balance);
+
+// Using For Of instead: need external variable
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum Value of Array using Reduce
+const maximum = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return (acc = mov);
+}, movements[0]);
+console.log(maximum); // logs max value in array
+
+
+// Chaining Methods
+const eurToUsd = 1.1;
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const totalDepositsInUSD = movements
+  .filter((mov, i, arr) => {
+    return mov > 0;
+  })
+  .map((mov, i, arr) => {
+    return mov * eurToUsd;
+  })
+  .reduce((acc, mov, i, arr) => {
+    return acc + mov;
+  }, 0);
+console.log(totalDepositsInUSD); // logs 5522
+*/
+
+// Find Method
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+// Finding an object with a specific property using Find Method
+const account = accounts.find(acc => acc.owner === `Jessica Davis`);
+console.log(account);

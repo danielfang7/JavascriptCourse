@@ -388,7 +388,7 @@ console.log(accounts);
 // Finding an object with a specific property using Find Method
 const account = accounts.find(acc => acc.owner === `Jessica Davis`);
 console.log(account);
-*/
+
 
 // .includes test for equality
 console.log(movements);
@@ -407,3 +407,24 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+*/
+
+// Flat Method
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// Flat Method to get Total Balance of all Accounts
+const overallBalance1 = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov);
+console.log(overallBalance1);
+
+// flatMap
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);

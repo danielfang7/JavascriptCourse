@@ -407,7 +407,6 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
-*/
 
 // Flat Method
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -428,3 +427,53 @@ const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+*/
+
+// Array Exercises
+//1
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(bankDepositSum);
+
+//2 how many deposits in bank > $1000
+const numDeposits = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+console.log(numDeposits);
+
+//3 second way of doing //2 - we can use reduce to count something in an array. Note that we can't use count++ as ++ operator increments value but still returns previous value. So we use prefixed ++ operator instead (++x)
+const numDeposits2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, mov) => (mov >= 1000 ? ++count : count), 0);
+console.log(numDeposits2);
+
+//4 Advanced Reduce: create an object which contains sum of deposits and withdrawals
+const sums = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (acc, cur) => {
+      // cur > 0 ? (acc.deposits += cur) : (acc.withdrawals += cur);
+      acc[cur > 0 ? `deposits` : `withdrawals`] += cur;
+      return acc;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log(sums);
+
+// 5 Convert any string to Title Case
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = [`a`, `an`, `and`, `the`, `but`, `or`, `on`, `in`, `with`];
+  const titleCase = title
+    .toLowerCase()
+    .split(` `)
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(` `);
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase(`this is a nice title`));
+console.log(convertTitleCase(`this is a LONG title, but not too long`));
+console.log(convertTitleCase(`and here is another title with an EXAMPLE`));

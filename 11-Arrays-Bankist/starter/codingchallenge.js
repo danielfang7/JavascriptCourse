@@ -114,7 +114,9 @@ const dogs = [
 
 // #1 Loop over the array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
 
-dogs.forEach((dog, i, arr) => (dog.recommendedFood = dog.weight * 0.75 * 28));
+dogs.forEach(
+  (dog, i, arr) => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+);
 console.log(dogs);
 
 // #2 Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
@@ -131,15 +133,13 @@ else console.log(`Eating fine`);
 
 const ownersEatTooMuch = dogs
   .filter(dog => dog.curFood > dog.recommendedFood * 1.1)
-  .map(dog => dog.owners)
-  .flat();
+  .flatMap(dog => dog.owners);
 console.log(ownersEatTooMuch);
 console.log(`${ownersEatTooMuch.join(` and `)}'s dogs eat too much!`);
 
 const ownersEatTooLittle = dogs
   .filter(dog => dog.curFood < dog.recommendedFood * 0.9)
-  .map(dog => dog.owners)
-  .flat();
+  .flatMap(dog => dog.owners);
 console.log(ownersEatTooLittle);
 
 console.log(`${ownersEatTooLittle.join(` and `)}'s dogs eat too little!`);
@@ -166,5 +166,6 @@ console.log(okayDogs);
 
 // #8 Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
 const sortedDogsByPortion = dogs.slice().sort((a, b) => {
-  return a - b;
+  return a.recommendedFood - b.recommendedFood;
 });
+console.log(sortedDogsByPortion);

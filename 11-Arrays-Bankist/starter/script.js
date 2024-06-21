@@ -81,9 +81,9 @@ const displayMovements = function (movements) {
 };
 
 // Calculate and Print Balance
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} €`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} €`;
 };
 
 // Calculate Income and Outflow Summary
@@ -121,6 +121,15 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
+const updateUI = function (acc) {
+  // Display Movements
+  displayMovements(acc.movements);
+  // Display Balance
+  calcDisplayBalance(acc);
+  // Display Summary
+  calcDisplaySummary(acc);
+};
+
 // Event Handlers
 let currentAccount;
 
@@ -139,13 +148,62 @@ btnLogin.addEventListener(`click`, function (e) {
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = ``;
     inputLoginPin.blur();
-    // Display Movements
-    displayMovements(currentAccount.movements);
-    // Display Balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display Summary
-    calcDisplaySummary(currentAccount);
+
+    updateUI(currentAccount);
   }
+});
+
+btnTransfer.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = ``;
+  inputTransferTo.blur();
+  // Check if Transfer can be Made and is Positive
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    currentAccount.balance >= amount &&
+    receiverAccount?.username !== currentAccount.username
+  ) {
+    // Add Negative Movement to Current User and Positive to Receiver
+    currentAccount.movements.push(-amount);
+    receiverAccount.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
+
+btnLoan.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add Movement (Loan approved)
+    currentAccount.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = ``;
+});
+
+btnClose.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+    // Delete Account
+    accounts.splice(index, 1);
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = ``;
 });
 
 /////////////////////////////////////////////////
@@ -319,7 +377,6 @@ const totalDepositsInUSD = movements
     return acc + mov;
   }, 0);
 console.log(totalDepositsInUSD); // logs 5522
-*/
 
 // Find Method
 const firstWithdrawal = movements.find(mov => mov < 0);
@@ -331,3 +388,22 @@ console.log(accounts);
 // Finding an object with a specific property using Find Method
 const account = accounts.find(acc => acc.owner === `Jessica Davis`);
 console.log(account);
+*/
+
+// .includes test for equality
+console.log(movements);
+console.log(movements.includes(-130));
+
+// Some method can be used to test for specific conditions and return true/false
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// Every Method: same as some but only returns true if EVERY element passes the condition
+console.log(movements.every(mov => mov > 0)); // false as this account has negative movements
+console.log(account4.movements.every(mov => mov > 0)); // true as this account only has positive movements
+
+// Separately defined callback can be used for methods
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));

@@ -477,7 +477,6 @@ labelBalance.addEventListener(`click`, function () {
   );
   console.log(movementsUI);
 });
-*/
 
 // Array Exercises
 //1

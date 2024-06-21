@@ -61,12 +61,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   // Empty container
   containerMovements.innerHTML = `;`;
-
+  // Sorting
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
   // Display movements
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `
     <div class="movements__row">
@@ -204,6 +205,13 @@ btnClose.addEventListener(`click`, function (e) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin.value = ``;
+});
+
+let sorted = false; // Initial State (not sorted)
+btnSort.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -408,6 +416,7 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 
+
 // Flat Method
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
@@ -427,6 +436,47 @@ const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+
+
+// Sort converts everything to strings and  mutates the original array
+const owners = [`Jonas`, `Zach`, `Adam`, `Martha`];
+console.log(owners.sort());
+
+// Sort numbers ascending (return < 0, A, B) (return > 0, B, A)
+console.log(movements);
+movements.sort((a, b) => {
+  if (a > b) return 1; // switch order
+  if (a < b) return -1; // keep order
+});
+console.log(movements);
+
+// Improved version of sorting numbers (ascending)
+movements.sort((a, b) => a - b);
+*/
+
+// Generating arrays programatically with fill method + empty arrays
+const x = new Array(7); // creates array of 7 empty elements
+console.log(x);
+x.fill(1, 3, 5); // fills the empty array with 1 starting index 3 to 5 (mutates original)
+console.log(x);
+
+const arr = [1, 2, 3, 4, 5, 6];
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y); // logs [1, 1, 1, 1, 1, 1, 1]
+
+// _ Underscore represents throwaway parameter
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z); // logs [1, 2, 3, 4, 5, 6, 7]
+
+labelBalance.addEventListener(`click`, function () {
+  // lets say we don't have movements array containing values - we need to get them from UI
+  const movementsUI = Array.from(
+    document.querySelectorAll(`.movements__value`),
+    el => Number(el.textContent.replace(`€`, ``))
+  );
+  console.log(movementsUI);
+});
 */
 
 // Array Exercises

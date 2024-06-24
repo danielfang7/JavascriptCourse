@@ -329,3 +329,19 @@ console.log(diameter); // engine ignores underscores
 // Underscores can help give different meanings
 const transferFee = 15_00;
 const transferFee2 = 1_500;
+
+// BigInt
+console.log(4324234238493829428934829348294829n); // n transforms regular number into BigInt
+console.log(BigInt(4324234238493829428934829348294829)); // constructor should only be used with smaller numbers
+
+// Operations (you cannot mix regular numbers with big ints, except for comparison operations)
+console.log(10000n + 10000n); // works normally
+console.log(54529529n * 10000n); // works normally
+
+// Exceptions
+console.log(20n > 15); // works
+console.log(20n === 20); // returns false given types of them are different
+console.log(20n == `20`); //this works as not forcing type coercion
+
+// Division
+console.log(10n / 3n); // returns 3n (closest big int, cuts decimal part off)

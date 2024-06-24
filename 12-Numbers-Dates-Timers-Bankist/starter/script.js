@@ -275,7 +275,7 @@ console.log(Number.isNaN(23 / 0)); // false (infinity is a special value that ex
 // isFinite - better to use to check if something is a real number
 console.log(Number.isFinite(`20`)); // false
 console.log(Number.isFinite(20 / 0)); // false
-*/
+
 
 // Square Root
 console.log(Math.sqrt(25)); // logs 5
@@ -302,3 +302,30 @@ console.log(Math.floor(23.9)); // round down force (23)
 // Rounding decimals/floating point
 console.log((2.757).toFixed(2)); // returns a string and not a number (to specified decimal places)
 console.log(+(2.757).toFixed(2)); // forces number
+*/
+
+console.log(5 % 2);
+console.log(5 / 2); // 5 = 2 * 2 + 1
+
+console.log(6 % 2);
+
+// Using Remainders to check if number is even
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+
+// Painting rows of deposits using Remainders
+labelBalance.addEventListener(`click`, function () {
+  [...document.querySelectorAll(`.movements__row`)].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = `orangered`;
+    if (i % 3 === 0) row.style.backgroundColor = `blue`;
+  });
+});
+
+// Numeric Separators
+const diameter = 287_460_000_000;
+console.log(diameter); // engine ignores underscores
+
+// Underscores can help give different meanings
+const transferFee = 15_00;
+const transferFee2 = 1_500;

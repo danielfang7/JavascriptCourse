@@ -302,7 +302,7 @@ console.log(Math.floor(23.9)); // round down force (23)
 // Rounding decimals/floating point
 console.log((2.757).toFixed(2)); // returns a string and not a number (to specified decimal places)
 console.log(+(2.757).toFixed(2)); // forces number
-*/
+
 
 console.log(5 % 2);
 console.log(5 / 2); // 5 = 2 * 2 + 1
@@ -345,3 +345,38 @@ console.log(20n == `20`); //this works as not forcing type coercion
 
 // Division
 console.log(10n / 3n); // returns 3n (closest big int, cuts decimal part off)
+*/
+
+// Create a Date (4 ways with diff parameters)
+const now = new Date();
+console.log(now);
+
+// Parsing Date from String
+console.log(new Date(`Mon Jun 24 2024 17:28:24 `)); // Parse date from string
+console.log(new Date(`December 24, 2015`)); // Parse date from string (this could be unreliable)
+console.log(new Date(account1.movementsDates[0]));
+
+// Using Y/M/D/Hours/Min/Seconds
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // Parse year, month (zero based), day, hours, min, second
+console.log(new Date(2037, 10, 31, 15, 23, 5)); // Nov 31 auto-corrects to Dec 1
+
+// Creating date using MS (timestamp) from initial Unix time (1/1/1970)
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // convert 3 days to milliseconds
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // returns 2037
+console.log(future.getMonth()); // returns 10
+console.log(future.getDate()); // returns 19
+console.log(future.getDay()); // returns 4 (thursday)
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString()); // follows international standard (as time/date string)
+console.log(future.getTime()); // number of milliseconds passed since Unix time
+console.log(new Date(future.getTime()));
+console.log(Date.now()); // gives current timestamp
+
+future.setFullYear(2040); // changes/sets the year/month/date or whatever
+console.log(future);

@@ -287,14 +287,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add Loan Date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add Loan Date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -472,7 +474,6 @@ const calcDaysPassed = (date1, date2) =>
 
 const days1 = calcDaysPassed(new Date(2037, 3, 28), new Date(2037, 3, 24));
 console.log(days1); // logs 4 (days)
-*/
 
 // Internationalizing Numbers
 const num = 3884764.23;
@@ -481,3 +482,22 @@ const options = {
   unit: `mile-per-hour`,
 };
 console.log(new Intl.NumberFormat(`en-US`, options).format(num)); // separates with commas for US, period for decimal, and we get unit of mph
+
+
+// Set Timeout
+const ingredients = [`olives`, `spinach`];
+const pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`),
+  3000,
+  ...ingredients // pass in parameters to your callback by adding more parameters to setTimeout
+);
+console.log(`Waiting...`); // setTimeout doesn't freeze code execution: JS will count time in the background (ASYNC JS)
+
+if (ingredients.includes(`spinach`)) clearTimeout(pizzaTimer); // deletes specified timer
+
+// Set Interval - executes callback function in loop based on specific time interval
+setInterval(function () {
+  const now = new Date();
+  console.log(now);
+}, 1000);
+*/

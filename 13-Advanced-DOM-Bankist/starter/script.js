@@ -30,6 +30,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////
+/*
 // Selecting Entire HTML
 console.log(document.documentElement);
 console.log(document.head);
@@ -68,3 +70,71 @@ document
   .addEventListener(`click`, function () {
     message.remove();
   });
+
+// Inline Styles
+message.style.backgroundColor = `#37383d`;
+message.style.width = `120%`;
+
+// To get Computed Styles (as appears on page)
+console.log(getComputedStyle(message).color);
+
+// To adjust Computed Styles
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + `px`;
+
+// To adjust Custom Properties
+document.documentElement.style.setProperty(`--color-primary`, `orangered`);
+
+// Attributes (accessing and modifying standard attributes)
+const logo = document.querySelector(`.nav__logo`);
+console.log(logo.alt);
+console.log(logo.src); // if we need the relative src or href link and not the absolute, use getAttribute instead
+console.log(logo.className);
+
+logo.alt = `Beautiful minimalist logo`;
+
+// Non-standard attribute
+console.log(logo.designer); // returns undefined
+console.log(logo.getAttribute(`designer`)); // works
+logo.setAttribute(`company`, `Bankist`); // creates and sets new attribute
+
+// Data Attributes (specially stored in dataset attribute)
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add(`c`);
+logo.classList.remove(`c`);
+logo.classList.toggle(`c`);
+logo.classList.contains(`c`);
+
+// Don't Use, overrides/only allows one
+logo.className = `Daniel`;
+*/
+
+const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+const section1 = document.querySelector(`#section--1`);
+
+btnScrollTo.addEventListener(`click`, function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+  console.log(`Current scroll (X/Y)`, window.pageXOffset, pageYOffset);
+  console.log(document.documentElement.clientHeight);
+  console.log(document.documentElement.clientWidth);
+
+  // Scrolling (current position + current scroll)
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // // Smooth Scroll
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: `smooth`,
+  // });
+
+  // New method of Scroll - way easier, only works in Modern Browsers
+  section1.scrollIntoView({ behavior: `smooth` });
+});

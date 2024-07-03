@@ -109,7 +109,7 @@ logo.classList.contains(`c`);
 
 // Don't Use, overrides/only allows one
 logo.className = `Daniel`;
-*/
+
 
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 const section1 = document.querySelector(`#section--1`);
@@ -151,3 +151,30 @@ h1.addEventListener(`mouseenter`, alertH1);
 // h1.onmouseenter = function (e) {
 //   alert(`addEventListener: Great! You are reading the heading :D #2`);
 // };
+*/
+
+// rgb(255, 255 ,255)
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+console.log(randomColor(0, 255));
+
+document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`LINK`, e.target);
+});
+
+// Parent of above block
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`CONTAINER`, e.target);
+});
+
+// Parent of above block
+document.querySelector(`.nav`).addEventListener(`click`, function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`NAV BAR`, e.target);
+});

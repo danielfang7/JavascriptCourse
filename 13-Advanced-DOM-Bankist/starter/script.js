@@ -81,6 +81,33 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
   }
 });
 
+// Tabbed Component
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+
+// Event Delegation
+tabsContainer.addEventListener(`click`, function (e) {
+  const clicked = e.target.closest(`.operations__tab`); // Click on Overall Container, then only return Button using .closest
+
+  // If we don't click on the Button and click on the Container (which returns null for .closest), return early
+  if (!clicked) return;
+
+  // Remove --active class name on all buttons, then only add it on the clicked tab button
+  tabs.forEach(t => t.classList.remove(`operations__tab--active`));
+
+  // Remove --active class name on content areas so content resets then we only show the clicked tab content
+  tabsContent.forEach(t => t.classList.remove(`operations__content--active`));
+
+  // Activaate Tab
+  clicked.classList.add(`operations__tab--active`);
+
+  // Change Content area below the Tab
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add(`operations__content--active`);
+});
+
 /////////////////////////////////
 /*
 // Selecting Entire HTML

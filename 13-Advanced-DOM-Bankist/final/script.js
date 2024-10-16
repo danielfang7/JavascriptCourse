@@ -507,3 +507,28 @@ window.addEventListener('beforeunload', function (e) {
   e.returnValue = '';
 });
 */
+
+// DOM Traversing
+const h1 = document.querySelector('h1');
+
+// Going Downwards: child element selection
+console.log(h1.querySelectorAll(`.highlight`)); // selects all children of h1 element with .highlight class name
+console.log(h1.childNodes); // gives every single node/type, including text, comments, elements, etc.
+console.log(h1.children); // gives only elements that are direct children of h1
+h1.firstElementChild.style.color = 'white'; // sets the first element's style color to white
+h1.lastElementChild.style.color = 'orangered'; // sets the last element's style color to orangered
+
+// Going Upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+h1.closest(`.header`).style.background = 'var(--gradient-secondary)'; // finds closest parent element with .header class, then changing color using CSS variable custom property
+
+// Going Sideways: siblings
+console.log(h1.previousElementSibling); // null because h1 is the first child, no previous sibling
+console.log(h1.nextElementSibling);
+console.log(h1.parentElement.children); // way to get all siblings, including itself
+
+// Scaling all sibling elements other than itself by 0.5
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = `scale(0.5)`;
+});
